@@ -33,14 +33,18 @@ void TuringMachine::Draw(sf::RenderWindow &wnd, sf::Font &font, sf::Event& event
                 if (data[first_ind].empty()) {
                     bad_ind.insert(first_ind - ind);
                 } else {
-                    bad_ind.erase(first_ind - ind);
+                    if (alph.find(data[first_ind]) != -1) {
+                        bad_ind.erase(first_ind - ind);
+                    }
                 }
                 ++first_ind;
             }
 
             --first_ind;
             while (data[first_ind].empty()) {
-                bad_ind.erase(first_ind - ind);
+                if (alph.find(data[first_ind]) != -1) {
+                    bad_ind.erase(first_ind - ind);
+                }
                 --first_ind;
             }
 
@@ -60,7 +64,7 @@ void TuringMachine::Draw(sf::RenderWindow &wnd, sf::Font &font, sf::Event& event
                 if (event.key.code != sf::Keyboard::Enter) {
                     char c[] = {event.key.code};
                     if (c[0] != ' ') {
-                        if (alph.find(c[0]) == -1 && sp.find(c[0]) == -1) {
+                        if (alph.find(c[0]) == -1) {
                             bad_ind.insert(input.size() + Click_ind);
                         }
                         input.push_back(c[0]);

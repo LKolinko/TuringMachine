@@ -17,9 +17,10 @@ public:
     void EnterSpawn(sf::RenderWindow& wnd);
     void SetData(std::vector<std::vector<std::string>> dt);
     std::vector<std::vector<std::string>> get_data();
-    void ToCell(int i, int j);
+    void ToCell(int i, int j, sf::Color c);
     std::string getCell(int i, int j);
 private:
+    sf::Color Bad_color;
     int Filli = -1, Fillj = -1;
     int enter_i, enter_j;
     bool is_enter = false;

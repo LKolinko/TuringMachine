@@ -110,7 +110,14 @@ void DoTact() {
         }
 
         std::string tac = table.getCell(i, j);
-        table.ToCell(i - 1, j - 1);
+        table.ToCell(i - 1, j - 1, sf::Color(48, 99, 142));
+
+        if (tac.empty()) {
+            table.ToCell(i - 1, j - 1, sf::Color::Red);
+            is_do_tact = false;
+            DoingTacts = false;
+            return;
+        }
 
         int ind = 0;
         std::string s;
@@ -309,7 +316,7 @@ int main() {
                 }
             }
             if (play.isMouseOver(*wnd)) {
-                table.ToCell(-1, -1);
+                table.ToCell(-1, -1, sf::Color(48, 99, 142));
                 if (!is_bad()) {
                     DoingTacts = true;
                 }
@@ -321,7 +328,7 @@ int main() {
                 DoingTacts = false;
                 tm.clearData();
                 tm.setQ("q0");
-                table.ToCell(-1, -1);
+                table.ToCell(-1, -1, sf::Color(48, 99, 142));
             }
         }
 

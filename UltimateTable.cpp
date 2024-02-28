@@ -101,7 +101,7 @@ void UltimateTable::Draw(sf::RenderWindow &wnd, sf::Font& font, sf::Event event)
                 sf::RectangleShape blr({CellSize.x - 2, CellSize.y - 2});
                 blr.setPosition({(float)(j - cnt_x) * CellSize.x - (Start.x - CellSize.x * cnt_x) + 2
                                         , (float) (i - cnt_y) * CellSize.y - (Start.y - CellSize.y * cnt_y) + 2} );
-                blr.setFillColor(sf::Color(48, 99, 142));
+                blr.setFillColor(Bad_color);
                 table.draw(blr);
             }
             if (is_enter && i + 1 == enter_i && j + 1 == enter_j) {
@@ -215,9 +215,10 @@ std::vector<std::vector<std::string>> UltimateTable::get_data() {
     return data;
 }
 
-void UltimateTable::ToCell(int i, int j) {
+void UltimateTable::ToCell(int i, int j, sf::Color u) {
     Filli = i;
     Fillj = j;
+    Bad_color = u;
     //Start.x = j * CellSize.x;
     //Start.y = i * CellSize.y;
 }
